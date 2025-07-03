@@ -18,7 +18,7 @@ TranscriptBot combines OpenAI Whisper for accurate transcription with GPT-4 for 
 ### 1. Clone and Setup
 
 ```bash
-git clone https://github.com/your-username/transcriptbot.git
+git clone https://github.com/LarissaRickler/transcriptbot.git
 cd transcriptbot
 bash setup_venv.sh
 ```
