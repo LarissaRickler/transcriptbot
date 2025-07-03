@@ -1,0 +1,8 @@
+# Grundlegende Tools
+numpy
+torch  # wird ggf. durch CUDA-Version ersetzt, siehe Hinweis unten
+openai-whisper
+ffmpeg-python  # erlaubt die Steuerung von ffmpeg aus Python
+
+# Für automatische Zusammenfassungen
+openai>=1.0.0  # OpenAI API für GPT-basierte Zusammenfassungen

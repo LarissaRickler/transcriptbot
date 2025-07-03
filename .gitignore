@@ -1,0 +1,69 @@
+# TranscriptBot .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Data files (exclude actual data but allow README files)
+data/audio/*.wav
+data/audio/*.m4a
+data/audio/*.mp3
+data/audio/*.mp4
+data/audio/*.flac
+data/audio/*.aac
+data/video/*.mkv
+data/video/*.mp4
+data/video/*.avi
+data/transcripts/*.txt
+data/summaries/*.md
+
+# Allow README files in data directories
+!data/*/README.md
+
+# Logs
+*.log
+
+# API Keys and environment files
+.env
+.env.local
+.env.*.local
+openai_key.txt
+api_key.txt
+
+# Temporary files
+*.tmp
+*.temp
+
+# Whisper model cache (optional)
+~/.cache/whisper/
+
+# Large model files
+*.pt
+*.pth
+*.bin
