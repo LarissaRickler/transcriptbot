@@ -1,5 +1,6 @@
 import os
 import json
+import re
 from pathlib import Path
 from datetime import datetime
 import openai
@@ -29,11 +30,11 @@ def create_summary_prompt(transcript_text: str, filename: str) -> str:
     # Detect if it's a thesis coaching session
     is_thesis_coaching = "thesis-coaching" in filename.lower()
     
-    # Detect language from filename (e.g., "meeting_de.txt" or "meeting_en.txt")
-    is_german = "_de.txt" in filename.lower() or "_german.txt" in filename.lower()
+    # Detect language from filename - only English or German recordings exist
+    # Treat "_nn.txt" (Norwegian) as German since it's misdetected by Whisper
     is_english = "_en.txt" in filename.lower() or "_english.txt" in filename.lower()
     
-    # Default to German if not clearly English
+    # Default to German if not clearly English (includes "_de.txt" and "_nn.txt")
     use_german = not is_english
     
     if is_thesis_coaching:

@@ -10,7 +10,7 @@ AUDIO_DIR = DATA_DIR / "audio"
 AUDIO_DIR.mkdir(parents=True, exist_ok=True)
 
 # Supported video extensions
-VIDEO_EXTENSIONS = [".mp4", ".mov", ".mkv", ".avi"]
+VIDEO_EXTENSIONS = [".mp4", ".mov", ".mkv", ".avi", ".webm", ".flv"]
 
 # Process all videos
 for video_path in VIDEO_DIR.iterdir():

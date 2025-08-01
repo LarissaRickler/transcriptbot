@@ -3,13 +3,13 @@ from pathlib import Path
 
 # Eingabe- und Zielverzeichnis definieren
 source_dir = Path.home() / "Videos" / "OBS"
-target_dir = Path.home() / "Projects" / "whisper" / "data" / "video"
+target_dir = Path(__file__).resolve().parent.parent / "data" / "video"
 
 # Zielverzeichnis erstellen, falls es nicht existiert
 target_dir.mkdir(parents=True, exist_ok=True)
 
 # Unterstützte Videoformate
-video_extensions = [".mp4", ".mkv", ".mov", ".avi"]
+video_extensions = [".mp4", ".mkv", ".mov", ".avi", ".webm", ".flv"]
 
 # Kopiervorgang
 for video_file in source_dir.glob("*"):
