@@ -32,3 +32,5 @@ WHISPER_MODEL = "base"  # Options: "tiny", "base", "small", "medium", "large"
 OPENAI_MODEL = "gpt-4"
 OPENAI_MAX_TOKENS = 2000
 OPENAI_TEMPERATURE = 0.3
+
+# TODO: use this in the scripts
