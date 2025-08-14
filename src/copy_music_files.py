@@ -17,7 +17,6 @@ target_dir.mkdir(parents=True, exist_ok=True)
 audio_extensions = [".wav", ".mp3", ".m4a", ".flac", ".aac", ".ogg", ".wma"]
 
 # Copy process
-copied_count = 0
 for audio_file in source_dir.rglob("*"):  # rglob for recursive search
     if audio_file.is_file() and audio_file.suffix.lower() in audio_extensions:
         destination = target_dir / audio_file.name
@@ -44,9 +43,3 @@ for audio_file in source_dir.rglob("*"):  # rglob for recursive search
             print(f"🎵 Copying audio from {audio_file} ...")
             shutil.copy2(audio_file, destination)
             print(f"✅ Saved audio to {destination}")
-            copied_count += 1
-
-if copied_count == 0:
-    print("ℹ️  No audio files found in ~/Music")
-else:
-    print(f"🎉 Copied {copied_count} audio files successfully!")
