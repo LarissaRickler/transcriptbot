@@ -42,6 +42,7 @@ data/video/*.mp4
 data/video/*.avi
 data/transcripts/*.txt
 data/summaries/*.md
+data/summaries/todos/*.md
 
 # Allow README files in data directories
 !data/*/README.md
