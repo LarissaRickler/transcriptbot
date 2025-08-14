@@ -3,6 +3,7 @@
 Copy audio files from ~/Music to data/audio/
 """
 import shutil
+import filecmp
 from pathlib import Path
 
 # Source and target directories
@@ -21,19 +22,29 @@ for audio_file in source_dir.rglob("*"):  # rglob for recursive search
     if audio_file.is_file() and audio_file.suffix.lower() in audio_extensions:
         destination = target_dir / audio_file.name
         
-        # Handle duplicate names by adding a counter
+        # Check if file already exists and is identical
+        if destination.exists() and filecmp.cmp(audio_file, destination, shallow=False):
+            print(f"⏭️  {audio_file.name} – Audio file already exists and is identical.")
+            continue
+            
+        # Handle duplicate names by adding a counter (only if files are different)
         counter = 1
         original_destination = destination
         while destination.exists():
+            # Check if this numbered version is identical
+            if filecmp.cmp(audio_file, destination, shallow=False):
+                print(f"⏭️  {audio_file.name} – Audio file already exists as {destination.name}.")
+                break
             stem = original_destination.stem
             suffix = original_destination.suffix
             destination = target_dir / f"{stem}_{counter}{suffix}"
             counter += 1
-        
-        print(f"🎵 Copying audio from {audio_file} ...")
-        shutil.copy2(audio_file, destination)
-        print(f"✅ Saved audio to {destination}")
-        copied_count += 1
+        else:
+            # Only copy if we didn't find an identical file
+            print(f"🎵 Copying audio from {audio_file} ...")
+            shutil.copy2(audio_file, destination)
+            print(f"✅ Saved audio to {destination}")
+            copied_count += 1
 
 if copied_count == 0:
     print("ℹ️  No audio files found in ~/Music")

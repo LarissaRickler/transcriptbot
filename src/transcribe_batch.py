@@ -42,9 +42,11 @@ print(f"🎵 Found {len(audio_files)} audio files to process")
 
 # Process all audio files with language detection limited to German and English
 for audio_path in audio_files:
-    output_txt = TRANSCRIPT_DIR / (audio_path.stem + ".txt")
+    # Check if transcript already exists with either language suffix
+    output_txt_de = TRANSCRIPT_DIR / f"{audio_path.stem}_de.txt"
+    output_txt_en = TRANSCRIPT_DIR / f"{audio_path.stem}_en.txt"
     
-    if not output_txt.exists():
+    if not output_txt_de.exists() and not output_txt_en.exists():
         print(f"📝 Transcribing {audio_path.name} (detecting German/English only)...")
         
         try:
@@ -107,6 +109,10 @@ for audio_path in audio_files:
             print(f"❌ Error transcribing {audio_path.name}: {e}")
             
     else:
-        print(f"⏭️  {audio_path.name} – Transcript already exists.")
+        # Show which transcript already exists
+        if output_txt_de.exists():
+            print(f"⏭️  {audio_path.name} – German transcript already exists.")
+        elif output_txt_en.exists():
+            print(f"⏭️  {audio_path.name} – English transcript already exists.")
 
 print(f"\n🎉 Transcription completed! Check {TRANSCRIPT_DIR} for results.")
